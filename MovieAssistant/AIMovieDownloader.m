@@ -11,7 +11,7 @@
 
 @implementation AIMovieDownloader
 
-+ (void)searchMovies:(void(^)(NSArray<AIMovieParser*>*))handler {
++ (void)searchMovies:(void(^)(NSArray <AIMovieParser*> *))handler {
     
     if (!handler)
         return;
@@ -22,33 +22,28 @@
     [manager GET:@"http://api.themoviedb.org/3/movie/top_rated?"
       parameters:@{@"api_key" : @"5e1809003aa40c436c5632289269da65"}
         progress:nil
-         success:^(NSURLSessionDataTask *task, id responseObject) {
-             if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                 
-                 NSArray *results = responseObject[@"results"];
-                 
-                 NSMutableArray *films = [NSMutableArray array];
-                 
-                 for (NSDictionary *firstResult in results) {
-                     AIMovieParser *film = [AIMovieParser parseMovie:firstResult];
-                     [films addObject:film];
-                     
-                     
-                 }
-                 
-                 handler(films);
-             }
+         success:^(NSURLSessionDataTask *task, id jsonDict) {
              
-             else {
-                 // TODO: Handle response error!
-                 NSLog(@"Response Error");
+             if ([jsonDict isKindOfClass:[NSDictionary class]]) {
                  
+                 NSArray *jsonArray = jsonDict[@"results"]; // array with dictionaries
+                 
+                 NSMutableArray *parsedMoviesArray = [NSMutableArray array]; // new array with parsed movies
+                 
+                 for (int step = 0; step < [jsonArray count]; step++) {
+                     
+                     AIMovieParser *parsedMovie = [AIMovieParser parseMovie:[jsonArray objectAtIndex:step]]; // parse all dictionaries in jsonArray
+                     [parsedMoviesArray addObject:parsedMovie]; // set them to parsed Array = array with AIMovieParser objects
+                 }
+                 handler(parsedMoviesArray);
+             }
+             else {
+                 
+                 NSLog(@"Response Error");
                  handler(nil);
              }
          }
-     
-         failure:^(NSURLSessionDataTask *task, NSError *error) {
-             // TODO: Show Allert on error!
+              failure:^(NSURLSessionDataTask *task, NSError *error) {
              NSLog(@"Error : %@", error.description);
              handler(nil);
          }];
@@ -60,10 +55,7 @@
     if (url) {
         [imageView setImageWithURL:url];
     }
-    
-    
-   
+ 
 }
-
 
 @end
