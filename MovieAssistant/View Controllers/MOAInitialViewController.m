@@ -62,7 +62,8 @@
   [super viewDidLoad];
 
 // Set Buttons:
-    [_watchLater setBackgroundImage:[UIImage imageNamed:@"3.jpg"] forState:UIControlStateNormal];
+    [_watchLater setBackgroundImage:[UIImage imageNamed:@"wood.ico"] forState:UIControlStateNormal];
+    _watchLater.backgroundColor = [UIColor clearColor];
     [_mostRated setBackgroundImage:[UIImage imageNamed:@"2.jpg"] forState:UIControlStateNormal];
     [_mostPopular setBackgroundImage:[UIImage imageNamed:@"1.jpg"] forState:UIControlStateNormal];
     [_showMapButton setBackgroundImage:[UIImage imageNamed:@"1.jpg"] forState:UIControlStateNormal];
