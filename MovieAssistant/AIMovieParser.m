@@ -29,7 +29,6 @@
     
     parsedMovie.moviePosterPath = posterURLstring;
 
-    
     return parsedMovie;
 }
 
