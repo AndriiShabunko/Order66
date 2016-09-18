@@ -76,15 +76,15 @@
 - (void) setDefaultMovies {
     
     self.movieArray = [NSMutableArray array];
+    AIMovieDownloader *loc = [[AIMovieDownloader alloc]init];
     
-    [AIMovieDownloader searchMovies:^(NSArray* films) {
+    [loc searchMovies:2: ^(NSArray* parsedMoviesArray) {
         
-        for (AIMovieParser *film in films) {
-            AIMovieParser *testTopRated = [AIMovieParser takeParsedElementsxOriginalTitle:film.movieOriginalTitle andCurrentTitle:nil andOriginalLanguage:nil andOverview:film.movieOverview andPosterPath:film.moviePosterPath andBackdropPath:nil andReleaseDate:nil andID:nil andVoteCount:nil andVoteAverage:nil andPopularity:nil andGenres:nil];
+        for (int step = 1; step < [parsedMoviesArray count]; step++) {
             
-            [self.movieArray addObject:testTopRated];
+            [self.movieArray addObject:[parsedMoviesArray objectAtIndex:step]];
         }
-        NSLog(@"ELEMENTS + %lu", [self.movieArray count]);
+        
         [self configureCarusels];
     }];
     
@@ -159,8 +159,9 @@
 - (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel {
 
     self.testMovieDescription.text = [self.movieArray objectAtIndex:carousel.currentItemIndex].movieOverview;
-
-   
+    self.testMovieDescription.backgroundColor = [UIColor lightGrayColor];
+    self.testMovieDescription.font = [UIFont systemFontOfSize:25];
+    self.testMovieDescription.textColor = [UIColor redColor];
   
     
 }
@@ -186,97 +187,97 @@
 
 #pragma mark - Social network sharing
 
-//- (IBAction)showSocialView:(id)sender {
-//
-//  NSString *shareText = [NSString
-//      stringWithFormat:@"Nice movie: %@!",
-//                       [self.arrayWithMovies
-//                           objectAtIndex:self.arrayWithMovies.count / 2]
-//                           .movieName];
-//  NSArray *itemsToShare = @[ shareText ];
-//  UIActivityViewController *activity =
-//      [[UIActivityViewController alloc] initWithActivityItems:itemsToShare
-//                                        applicationActivities:nil];
-//  activity.popoverPresentationController.sourceView = self.shareButton;
-//  activity.popoverPresentationController.sourceRect = ((UIView *)sender).bounds;
-//  activity.excludedActivityTypes = @[ UIActivityTypeCopyToPasteboard ];
-//  [self presentViewController:activity animated:YES completion:nil];
-//}
-//
-//- (IBAction)mostPopularTouch:(id)sender {
-//    // Call Soroka method to fill self.arrayWithData...
-////    self.arrayWithMovies = [NSMutableArray array];
-////    
-////    [MOADownloadManager fetchAllMoviesWithCompletionUpComing:^(NSArray *films) {
-////        [self.arrayWithMovies addObjectsFromArray:films];
-////        NSArray *posterPathUpComing = [_arrayWithMovies valueForKeyPath:@"@distinctUnionOfObjects.posterPath"];
-////        [self.arrayWithMovies removeAllObjects];
-////        [self.arrayWithMovies addObjectsFromArray:posterPathUpComing];
-////        NSLog(@"");
-////    }];
+- (IBAction)showSocialView:(id)sender {
+
+  NSString *shareText = [NSString
+      stringWithFormat:@"Nice movie: %@!",
+                       [self.arrayWithMovies
+                           objectAtIndex:self.arrayWithMovies.count / 2]
+                           .movieName];
+  NSArray *itemsToShare = @[ shareText ];
+  UIActivityViewController *activity =
+      [[UIActivityViewController alloc] initWithActivityItems:itemsToShare
+                                        applicationActivities:nil];
+  activity.popoverPresentationController.sourceView = self.shareButton;
+  activity.popoverPresentationController.sourceRect = ((UIView *)sender).bounds;
+  activity.excludedActivityTypes = @[ UIActivityTypeCopyToPasteboard ];
+  [self presentViewController:activity animated:YES completion:nil];
+}
+
+- (IBAction)mostPopularTouch:(id)sender {
+    // Call Soroka method to fill self.arrayWithData...
+//    self.arrayWithMovies = [NSMutableArray array];
 //    
-//    self.arrayWithDataForCollections = [NSMutableArray array];
-//    
-//    [MOADownloadManager fetchAllMoviesWithCompletionMostPopular:^(NSArray *films) {
-//        
-//        for (MOAFilm *film in films) {
-//            MOAMovieManager *mostPopular = [MOAMovieManager
-//                                         newMoviewWithName:film.title//@"Deadpool"
-//                                         andYear:@"2016"
-//                                         andGenres:@"Adventure"
-//                                         andRating:@"7.2"
-//                                         andDescription:@"This is Deadpool"
-//                                         andPoster:film.posterPath//@"http://cdn.traileraddict.com/content/"
-//                                         //@"20th-century-fox/"
-//                                         //@"deadpool-poster-10.jpg"
-//                                         andTrailer:@"ZIM1HydF9UA"];
-//            
-//            [self.arrayWithDataForCollections addObject:mostPopular];
-//        }
-//    [self performSegueWithIdentifier:@"toCollections" sender:self];
+//    [MOADownloadManager fetchAllMoviesWithCompletionUpComing:^(NSArray *films) {
+//        [self.arrayWithMovies addObjectsFromArray:films];
+//        NSArray *posterPathUpComing = [_arrayWithMovies valueForKeyPath:@"@distinctUnionOfObjects.posterPath"];
+//        [self.arrayWithMovies removeAllObjects];
+//        [self.arrayWithMovies addObjectsFromArray:posterPathUpComing];
+//        NSLog(@"");
 //    }];
-//}
-//
-//- (IBAction)mostRatedTouch:(id)sender {
-//    
-//    self.arrayWithDataForCollections = [NSMutableArray array];
-//    
-//    [MOADownloadManager fetchAllMoviesWithCompletionTopRated:^(NSArray *films) {
-//        
-//        for (MOAFilm *film in films) {
-//            MOAMovieManager *topRated = [MOAMovieManager
-//                                            newMoviewWithName:film.title//@"Deadpool"
-//                                            andYear:@"2016"
-//                                            andGenres:@"Adventure"
-//                                            andRating:@"7.2"
-//                                            andDescription:@"This is Deadpool"
-//                                            andPoster:film.posterPath//@"http://cdn.traileraddict.com/content/"
-//                                            //@"20th-century-fox/"
-//                                            //@"deadpool-poster-10.jpg"
-//                                            andTrailer:@"ZIM1HydF9UA"];
-//            
-//            [self.arrayWithDataForCollections addObject:topRated];
-//        }
-//    [self performSegueWithIdentifier:@"toCollections" sender:self];
-//    }];
-//}
-//
-//
-//- (IBAction)watchLaterTouch:(id)sender {
-//    [self performSegueWithIdentifier:@"toCollections" sender:self];
-//}
-//
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-// // Make sure your segue name in storyboard is the same as this line
-//    if ([[segue identifier] isEqualToString:@"toCollections"])
-//    {
-//        // Get reference to the destination view controller
-//        MOACollectionsViewController *vc = [segue destinationViewController];
-//        
-//        // Pass any objects to the view controller here, like...
-//        vc.dataFromInitial = self.arrayWithDataForCollections;
-//    }
-//}
+    
+    self.arrayWithDataForCollections = [NSMutableArray array];
+    
+    [MOADownloadManager fetchAllMoviesWithCompletionMostPopular:^(NSArray *films) {
+        
+        for (MOAFilm *film in films) {
+            MOAMovieManager *mostPopular = [MOAMovieManager
+                                         newMoviewWithName:film.title//@"Deadpool"
+                                         andYear:@"2016"
+                                         andGenres:@"Adventure"
+                                         andRating:@"7.2"
+                                         andDescription:@"This is Deadpool"
+                                         andPoster:film.posterPath//@"http://cdn.traileraddict.com/content/"
+                                         //@"20th-century-fox/"
+                                         //@"deadpool-poster-10.jpg"
+                                         andTrailer:@"ZIM1HydF9UA"];
+            
+            [self.arrayWithDataForCollections addObject:mostPopular];
+        }
+    [self performSegueWithIdentifier:@"toCollections" sender:self];
+    }];
+}
+
+- (IBAction)mostRatedTouch:(id)sender {
+    
+    self.arrayWithDataForCollections = [NSMutableArray array];
+    
+    [MOADownloadManager fetchAllMoviesWithCompletionTopRated:^(NSArray *films) {
+        
+        for (MOAFilm *film in films) {
+            MOAMovieManager *topRated = [MOAMovieManager
+                                            newMoviewWithName:film.title//@"Deadpool"
+                                            andYear:@"2016"
+                                            andGenres:@"Adventure"
+                                            andRating:@"7.2"
+                                            andDescription:@"This is Deadpool"
+                                            andPoster:film.posterPath//@"http://cdn.traileraddict.com/content/"
+                                            //@"20th-century-fox/"
+                                            //@"deadpool-poster-10.jpg"
+                                            andTrailer:@"ZIM1HydF9UA"];
+            
+            [self.arrayWithDataForCollections addObject:topRated];
+        }
+    [self performSegueWithIdentifier:@"toCollections" sender:self];
+    }];
+}
+
+
+- (IBAction)watchLaterTouch:(id)sender {
+    [self performSegueWithIdentifier:@"toCollections" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+ // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"toCollections"])
+    {
+        // Get reference to the destination view controller
+        MOACollectionsViewController *vc = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        vc.dataFromInitial = self.arrayWithDataForCollections;
+    }
+}
 
 @end

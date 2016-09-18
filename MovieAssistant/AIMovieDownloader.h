@@ -9,7 +9,9 @@
 
 @interface AIMovieDownloader : NSObject
 
-+ (void)searchMovies:(void(^)(NSArray<AIMovieParser*>*))handler;
+@property (strong, nonatomic) NSString *selectedCategory;
+
+- (void)searchMovies:(int)locker : (void(^)(NSArray<AIMovieParser*>*))handler;
 
 + (void)imageView:(UIImageView *)imageView testLoadImageWithPath:(NSString *)path;
 
