@@ -15,7 +15,7 @@
     parsedMovie.movieCurrentTitle = dictionary[@"title"];
     parsedMovie.movieOriginalLanguage = dictionary[@"original_language"];
     parsedMovie.movieOverview= dictionary[@"overview"];
-//    parsedMovie.moviePosterPath = dictionary[@"poster_path"];
+    parsedMovie.moviePosterPath = [[NSString stringWithFormat:@"https://image.tmdb.org/t/p/original%@", dictionary[@"poster_path"]]stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     parsedMovie.movieBackdropPath = dictionary[@"backdrop_path"];
     parsedMovie.movieReleaseDate = dictionary[@"release_date"];
     parsedMovie.movieID = dictionary[@"id"];
@@ -23,11 +23,6 @@
     parsedMovie.movieVoteAverage = dictionary[@"vote_average"];
     parsedMovie.moviePopularity = dictionary[@"popularity"];
     parsedMovie.movieGenres = dictionary[@"genre_ids"];
-
-    NSString *posterPath = dictionary[@"poster_path"];
-    NSString *posterURLstring = [[NSString stringWithFormat:@"https://image.tmdb.org/t/p/original%@", posterPath]stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    
-    parsedMovie.moviePosterPath = posterURLstring;
 
     return parsedMovie;
 }
