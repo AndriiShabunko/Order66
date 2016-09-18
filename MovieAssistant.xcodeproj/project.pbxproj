@@ -50,6 +50,7 @@
 		84F6EB571D75D73600AA3CF1 /* MOAMovieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6EB561D75D73600AA3CF1 /* MOAMovieCollectionViewCell.m */; };
 		84F6EB5A1D75F31300AA3CF1 /* MOASelectedMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6EB591D75F31300AA3CF1 /* MOASelectedMovieViewController.m */; };
 		84F6EB5D1D75FE3D00AA3CF1 /* MOAGenres.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6EB5C1D75FE3D00AA3CF1 /* MOAGenres.m */; };
+		BF9CC17C1D8EF65E00A0DA4B /* wood.ico in Resources */ = {isa = PBXBuildFile; fileRef = BF9CC17B1D8EF65E00A0DA4B /* wood.ico */; };
 		BFD46CEA1D8D8E3B00BE5E27 /* AIMovieDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD46CE91D8D8E3B00BE5E27 /* AIMovieDownloader.m */; };
 		BFD46CED1D8D8ED200BE5E27 /* AIMovieParser.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD46CEC1D8D8ED200BE5E27 /* AIMovieParser.m */; };
 		BFFEEF791D8D2FAF00C92E2E /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BFFEEF711D8D2FAF00C92E2E /* 1.jpg */; };
@@ -133,6 +134,7 @@
 		84F6EB591D75F31300AA3CF1 /* MOASelectedMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOASelectedMovieViewController.m; sourceTree = "<group>"; };
 		84F6EB5B1D75FE3D00AA3CF1 /* MOAGenres.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MOAGenres.h; path = Model/MOAGenres.h; sourceTree = "<group>"; };
 		84F6EB5C1D75FE3D00AA3CF1 /* MOAGenres.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MOAGenres.m; path = Model/MOAGenres.m; sourceTree = "<group>"; };
+		BF9CC17B1D8EF65E00A0DA4B /* wood.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = wood.ico; sourceTree = "<group>"; };
 		BFD46CE81D8D8E3B00BE5E27 /* AIMovieDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIMovieDownloader.h; sourceTree = "<group>"; };
 		BFD46CE91D8D8E3B00BE5E27 /* AIMovieDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIMovieDownloader.m; sourceTree = "<group>"; };
 		BFD46CEB1D8D8ED200BE5E27 /* AIMovieParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIMovieParser.h; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 		522081061D6B5AA900E798A4 /* Graphical resources */ = {
 			isa = PBXGroup;
 			children = (
+				BF9CC17B1D8EF65E00A0DA4B /* wood.ico */,
 				BFFEEF711D8D2FAF00C92E2E /* 1.jpg */,
 				BFFEEF721D8D2FAF00C92E2E /* 1x.jpg */,
 				BFFEEF731D8D2FAF00C92E2E /* 2.jpg */,
@@ -465,6 +468,7 @@
 				BFFEEF791D8D2FAF00C92E2E /* 1.jpg in Resources */,
 				52D1078B1D6C806A000B825C /* MOAMenuTableCellView.xib in Resources */,
 				52CAA8C01D76D4970083A981 /* SHADataFavoriteList.plist in Resources */,
+				BF9CC17C1D8EF65E00A0DA4B /* wood.ico in Resources */,
 				84072E1C1D895C5000D18E58 /* Movie.xib in Resources */,
 				BFFEEF7B1D8D2FAF00C92E2E /* 2.jpg in Resources */,
 				BFFEEF7E1D8D2FAF00C92E2E /* Apple.jpg in Resources */,
