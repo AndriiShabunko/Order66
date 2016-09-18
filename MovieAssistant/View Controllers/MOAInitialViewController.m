@@ -80,7 +80,7 @@
     [AIMovieDownloader searchMovies:^(NSArray* films) {
         
         for (AIMovieParser *film in films) {
-            AIMovieParser *testTopRated = [AIMovieParser takeParsedElementsxOriginalTitle:film.movieOriginalTitle andCurrentTitle:nil andOriginalLanguage:nil andOverview:nil andPosterPath:film.moviePosterPath andBackdropPath:nil andReleaseDate:nil andID:nil andVoteCount:nil andVoteAverage:nil andPopularity:nil andGenres:nil];
+            AIMovieParser *testTopRated = [AIMovieParser takeParsedElementsxOriginalTitle:film.movieOriginalTitle andCurrentTitle:nil andOriginalLanguage:nil andOverview:film.movieOverview andPosterPath:film.moviePosterPath andBackdropPath:nil andReleaseDate:nil andID:nil andVoteCount:nil andVoteAverage:nil andPopularity:nil andGenres:nil];
             
             [self.movieArray addObject:testTopRated];
         }
@@ -158,10 +158,10 @@
 // докрутити афыгенну штуку////////////////////////////////////////////
 - (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel {
 
-    self.testStringMovieDescription = [self.movieArray objectAtIndex:carousel.currentItemIndex].movieOverview;
-    self.testMovieDescription.text = self.testStringMovieDescription;
+    self.testMovieDescription.text = [self.movieArray objectAtIndex:carousel.currentItemIndex].movieOverview;
+
    
-    NSLog(@"%@",self.testStringMovieDescription);
+  
     
 }
 

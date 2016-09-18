@@ -9,17 +9,28 @@
 
 + (AIMovieParser*) parseMovie:(NSDictionary*) dictionary {
     
-    AIMovieParser *film = [[AIMovieParser alloc] init];
+    AIMovieParser *parsedMovie = [[AIMovieParser alloc] init];
     
-    film.movieOriginalTitle = [dictionary objectForKey:@"title"];
-    
+    parsedMovie.movieOriginalTitle = dictionary[@"original_title"];
+    parsedMovie.movieCurrentTitle = dictionary[@"title"];
+    parsedMovie.movieOriginalLanguage = dictionary[@"original_language"];
+    parsedMovie.movieOverview= dictionary[@"overview"];
+//    parsedMovie.moviePosterPath = dictionary[@"poster_path"];
+    parsedMovie.movieBackdropPath = dictionary[@"backdrop_path"];
+    parsedMovie.movieReleaseDate = dictionary[@"release_date"];
+    parsedMovie.movieID = dictionary[@"id"];
+    parsedMovie.movieVoteCount = dictionary[@"vote_count"];
+    parsedMovie.movieVoteAverage = dictionary[@"vote_average"];
+    parsedMovie.moviePopularity = dictionary[@"popularity"];
+    parsedMovie.movieGenres = dictionary[@"genre_ids"];
+
     NSString *posterPath = dictionary[@"poster_path"];
     NSString *posterURLstring = [[NSString stringWithFormat:@"https://image.tmdb.org/t/p/original%@", posterPath]stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     
-    film.moviePosterPath = posterURLstring;
-    film.movieOverview = dictionary[@"overview"];
+    parsedMovie.moviePosterPath = posterURLstring;
+
     
-    return film;
+    return parsedMovie;
 }
 
 + (AIMovieParser*) takeParsedElementsxOriginalTitle:(NSString*) originalTitle
@@ -35,22 +46,22 @@
                                       andPopularity:(NSNumber*) popularity
                                           andGenres:(NSNumber*) genres {
     
-    AIMovieParser *newParsedMovie = [[AIMovieParser alloc]init];
+    AIMovieParser *takedMovie = [[AIMovieParser alloc]init];
     
-    newParsedMovie.movieOriginalTitle = originalTitle;
-    newParsedMovie.movieCurrentTitle = currentTitle;
-    newParsedMovie.movieOriginalLanguage = originalLanguage;
-    newParsedMovie.movieOverview = overview;
-    newParsedMovie.moviePosterPath = posterPath;
-    newParsedMovie.movieBackdropPath = backdropPath;
-    newParsedMovie.movieReleaseDate = releaseDate;
-    newParsedMovie.movieID = iD;
-    newParsedMovie.movieVoteCount = voteCount;
-    newParsedMovie.movieVoteAverage = voteAverage;
-    newParsedMovie.moviePopularity = popularity;
-    newParsedMovie.movieGenres = genres;
+    takedMovie.movieOriginalTitle = originalTitle;
+    takedMovie.movieCurrentTitle = currentTitle;
+    takedMovie.movieOriginalLanguage = originalLanguage;
+    takedMovie.movieOverview = overview;
+    takedMovie.moviePosterPath = posterPath;
+    takedMovie.movieBackdropPath = backdropPath;
+    takedMovie.movieReleaseDate = releaseDate;
+    takedMovie.movieID = iD;
+    takedMovie.movieVoteCount = voteCount;
+    takedMovie.movieVoteAverage = voteAverage;
+    takedMovie.moviePopularity = popularity;
+    takedMovie.movieGenres = genres;
     
-    return newParsedMovie;
+    return takedMovie;
 }
 
 @end
