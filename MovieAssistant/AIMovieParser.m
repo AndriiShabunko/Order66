@@ -16,7 +16,7 @@
     parsedMovie.movieOriginalLanguage = dictionary[@"original_language"];
     parsedMovie.movieOverview= dictionary[@"overview"];
     parsedMovie.moviePosterPath = [[NSString stringWithFormat:@"https://image.tmdb.org/t/p/original%@", dictionary[@"poster_path"]]stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    parsedMovie.movieBackdropPath = dictionary[@"backdrop_path"];
+    parsedMovie.movieBackdropPath = [[NSString stringWithFormat:@"https://image.tmdb.org/t/p/original%@", dictionary[@"backdrop_path"]]stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     parsedMovie.movieReleaseDate = dictionary[@"release_date"];
     parsedMovie.movieID = dictionary[@"id"];
     parsedMovie.movieVoteCount = dictionary[@"vote_count"];

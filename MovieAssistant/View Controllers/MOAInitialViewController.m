@@ -79,7 +79,7 @@
     self.movieArray = [NSMutableArray array];
     AIMovieDownloader *loc = [[AIMovieDownloader alloc]init];
     
-    [loc searchMovies:2: ^(NSArray* parsedMoviesArray) {
+    [loc searchMovies:3: ^(NSArray* parsedMoviesArray) {
         
         for (int step = 1; step < [parsedMoviesArray count]; step++) {
             
@@ -146,7 +146,7 @@
     
     
     
-    l.text = [self.movieArray objectAtIndex:index].movieOriginalTitle;
+    l.text = [self.movieArray objectAtIndex:index].movieCurrentTitle;
     
     return view;
 }
